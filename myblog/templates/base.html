@@ -1,0 +1,68 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-dns-prefetch-control" content="on"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-title" content="PythonTOP,拓普Python学院">
+    <title>拓普Python学院,Python!</title>
+
+    <link rel='stylesheet' id='bootstrap-css' href='{% static "css/bootstrap.min.css" %}' type='text/css' media='all'/>
+    <link rel='stylesheet' id='fontawesome-css' href='{% static "css/font-awesome.min.css" %}' type='text/css' media='all'/>
+    <link rel='stylesheet' id='stylesheet-css' href='{% static "css/style.css" %}' type='text/css' media='all'/>
+    <link rel='stylesheet' id='raxus-css' href='{% static "css/raxus.css" %}' type='text/css' media='all'/>
+    <link rel='stylesheet' id='open-social-style-css' href='{% static "css/os.css" %}' type='text/css' media='all'/>
+    <meta name='robots' content='index,follow'/>
+    <meta name="keywords" content="互联网,产品经理,产品设计,用户体验,交互设计,网站运营,移动互联网">
+    <meta name="description" content="聚焦互联网前沿资讯，网络精华内容，交流产品心得。 每天为你速递最新、最鲜、最有料的互联网科技资讯！">
+</head>
+<body class="home blog site-layout-2">
+<!-- 头部 -->
+<header class="fix-wrap" id="fix-wrap">
+    <div class="fix-main clearfix pr" id="fix-main" _hover-ignore="1"><a href="/" class="index-logo">
+        <img src="{% static "picture/black-logo.png" %}" alt="拓普Python学院,Python!"></a>
+        <nav class="nav fl">
+            <ul id="fix-list" class="fix-list clearfix">
+
+                <li id="menu-item-24086" class="menu-item"><a href="/">首页</a></li>
+                {% for item in allcategory %}
+                    <li id="menu-item-117720" class="menu-item">
+                        <a href="{% url 'index' %}list-{{ item.id }}.html">{{ item.name }}</a>
+                    </li>
+                {% endfor %}
+                <li id="menu-item-24086" class="menu-item"><a href="/about/">关于博主</a></li>
+            </ul>
+        </nav>
+        <form method="get" class="index-search  hidden-xs" action="/s/">
+            <input class="text" name="search" type="text" placeholder="输入关键字" value="">
+            <button class="submit" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</header>
+
+{% block content %}
+
+{% endblock %}
+
+<!-- 底部 -->
+<footer class="footer">
+    <div class="copyright"> © 2010- 2018 · All Rights Reserved
+        · <a href="https://www.django.cn">Django中文网</a>
+        · <a href="http://www.miibeian.gov.cn" target="_blank">湘ICP备17023990号</a> 版权所有 © Django中文网
+    </div>
+</footer>
+<script src="{% static "js/bundle.js" %}"></script>
+<script type="text/javascript" src="{% static "js/view-history.js" %}"></script>
+<script type='text/javascript' src="{% static "js/push.js" %}"></script>
+<script type='text/javascript' src='{% static "js/jquery.min.js" %}'></script>
+<script type='text/javascript' src='{% static "js/bootstrap.min.js" %}'></script>
+<script type='text/javascript' src='{% static "js/raxus-slider.min.js" %}'></script>
+<script type='text/javascript' src='{% static "js/loader.js" %}'></script>
+<script type='text/javascript' src='{% static "js/bj-lazy-load.min.js" %}'></script>
+<script type='text/javascript' src='{% static "js/os.js" %}'></script>
+
+</body>
+</html>

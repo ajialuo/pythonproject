@@ -1,0 +1,79 @@
+﻿{% extends "base.html" %}
+{% block content %}
+    <div id="main-container" class="container clearfix">
+        <section class="post-left">
+            <div class="breadcrumb">您的位置： <a itemprop="breadcrumb" href="{% url 'index' %}">首页</a> »
+                    <span class="current">{{ cname }} </span></div>
+            <div class="index-main clearfix">
+                <div class="main-title">
+                    <h4 class="post-left-title">分类：{{ cname }}</h4>
+                </div>
+                <div class="row">
+                    {% for list in list %}
+                        <div class="article-box clearfix excerpt-1">
+                            <div class="col-md-4">
+                                <div class="thumbnail">
+                                    <a href="{% url 'index' %}show-{{ list.id }}.html" title="{{ list.title }}">
+                                        <img src="media/{{ list.img }}"
+                                             srcset="media/{{ list.img }}"
+                                             alt="{{ list.title }}" class="wp-post-image" width="240" height="160"/></a>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h2><a href="{% url 'index' %}show-{{ list.id }}.html" target="_blank"
+                                       title="{{ list.title }}">{{ list.title }}</a></h2>
+                                <p class="txtcont hidden-xs"><a href="{% url 'index' %}show-{{ list.id }}.html"
+                                                                target="_blank"
+                                                                title="{{ list.title }}">{{ list.excerpt }}</a></p>
+                                <div class="meta"><span class="label label-info"><a
+                                        href="{% url 'index' %}list-{{ list.category_id }}.html">{{ list.category.name }}</a></span>
+                                    <time class="item"><i
+                                            class="fa fa-clock-o"></i>{{ list.created_time|date:"Y年m月d日" }}
+                                    </time>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+
+                    <div class="pagination">
+                        <ul>
+                            {% if list.has_previous %}
+                                <li class="prev-page"><a href="?page={{ list.previous_page_number }}">上一页</a></li>
+                            {% else %}
+                                <li class="prev-page"></li>
+                            {% endif %}
+
+                            {% for num in list.paginator.page_range %}
+                                {% if num %}
+                                    {% ifequal num list.number %}
+                                        <li class="active"><span>{{ num }}</span></li>
+                                    {% else %}
+                                        <li><a href="?page={{ num }}">{{ num }}</a></li>
+                                    {% endifequal %}
+                                {% else %}
+                                    <li class="disabled"><span>...</span></li>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if list.has_next %}
+                                <li class="next-page"><a href="?page={{ list.next_page_number }}">下一页</a></li>
+                            {% else %}
+                                <li class="prev-page"></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+
+                    <!-- /文章列表 -->
+        </section>
+        <!-- /post-left -->
+        <!-- /post-right -->
+        <aside class="post-right hidden-xs">
+            </section></section>
+
+            {% include 'right.html' %}
+
+        </aside>
+    </div>
+{% endblock %}
